@@ -1,0 +1,23 @@
+﻿@model List<JqueryExamples.Models.CustomControlProperty>
+@{
+    ViewBag.Title = "DynTxtCreateSecondMethod";
+}
+
+<h2>DynTxtCreateSecondMethod</h2>
+
+
+<form action="~/Default/DynTxtCreateUsingDb" method="post"  data-spy="scroll" data-target=".form-inline" data-offset="50">
+   
+     @foreach (var item in Model)
+    {
+        <div class="form-inline">
+            <div class="form-group col-md-2">
+                <label class="control-label">@item.PropertyName</label>
+            </div>
+            <div class="col-md-10">
+                <input type="@item.FieldType" name="@item.PropertyName" value="@item.PropertyValue" class="form-control" maxlength="@item.FieldLength" style="display:@item.IsActive==true?visible:none" />
+            </div>
+        </div>
+    }
+    <input type="submit" class="btn btn-success" value="Save" />
+</form>

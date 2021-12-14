@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "DynamicTextBox";
+   // Layout = null;
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<h2>DynamicTextBox</h2>
+
+<div id="form"  action="javascript:alert('submitted');" method="post" class='form-horizontal'>
+    
+    <div id="submitdiv">
+     <input type="button" id="submitbutton" />
+    </div>
+
+</div>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            url: "http://localhost:50092/Default/DynamicTextBoxCreate",
+            dataType: "JSON",
+            type:"GET",
+            success: function (result) {
+                $.each(result,function(i,key){
+                    $('#form').after("<div class=''form-group''><label class=''control-label''>" + key.PropertyName + "</label><br/><input type=text value='" + key.PropertyValue + "' id='" + key.PropertyName + "'/></div>")
+
+
+                })
+                //$('#submitbutton').after("<p id='saveEmp'>test</p>")
+                }
+        })
+
+       
+    })
+
+    $("#submitbutton").on('click', function () {
+
+        alert($('#EmpName').val());
+        
+
+        $.ajax({
+            url: "http://localhost:50092/Default/SaveEmployee",
+            dataType: "JSON",
+            type: "POST",
+            data:{
+                EmpName:$('#EmpName').val(),
+                EmpSalary:$('#EmpSalary').val()
+            },
+            success: function (result) {
+                alert('save');
+            }
+        })
+
+    })
+</script>
