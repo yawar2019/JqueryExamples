@@ -13,6 +13,7 @@ namespace JqueryExamples.Models
         public int FieldLength { get; set; }
         public bool IsActive { get; set; }
         public string FieldType { get; set; }
+        public string ReadOnlyProp { get; set; }
 
     }
 }

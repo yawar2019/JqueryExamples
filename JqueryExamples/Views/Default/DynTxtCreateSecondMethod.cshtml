@@ -15,12 +15,13 @@
                 <label class="control-label">@item.PropertyName</label>
             </div>
             <div class="col-md-10">
-                <input type="@item.FieldType" name="@item.PropertyName" id="@item.PropertyName" value="@item.PropertyValue" class="form-control" maxlength="10"/>
+                <input type="@item.FieldType" name="@item.PropertyName" id="@item.PropertyName" value="@item.PropertyValue" class="form-control" maxlength="10" @item.ReadOnlyProp/>
             </div>
         </div>
     }
     <input type="submit" class="btn btn-success" value="Save" />
 </form>
+ 
 
 <script src="~/scripts/jquery-1.10.2.js"></script> 
 <script src="~/scripts/Calculation.js"></script>
