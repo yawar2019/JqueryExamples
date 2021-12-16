@@ -86,22 +86,14 @@ namespace JqueryExamples.Controllers
         public ActionResult DynTxtCreateUsingDb()
         {
             SqlConnection con = new SqlConnection(@"Data Source=AZAM-PC\SQLEXPRESS;Initial catalog=Employee;Integrated Security=true");
-           var CustomControl= con.Query<CustomControlProperty>("usp_getCustomProperty", commandType: CommandType.StoredProcedure).ToList();
-            foreach (var item in CustomControl)
-            {
-                var test = CustomControl.Where(s => s.PropertyName == "EmpName" && s.PropertyValue == "John").Select(s=>s.PropertyName);
-                if (test != null)
-                {
-                    item.ReadOnlyProp = "readonly";
-                }
-                else
-                {
-                    item.ReadOnlyProp = string.Empty;
+            var CustomControl= con.Query<CustomControlProperty>("usp_getCustomProperty", commandType: CommandType.StoredProcedure).ToList();
+            var Gender = con.Query<Genderdet>("sp_getGender", commandType: CommandType.StoredProcedure).ToList();
+            var Designation = con.Query<Designationdet>("sp_getDesignation", commandType: CommandType.StoredProcedure).ToList();
 
-                }
 
-                CustomControl.Add(item);
-            }
+            ViewBag.Gender = new SelectList(Gender, "Id", "Gender").ToList();
+            ViewBag.Designation = new SelectList(Designation, "Id", "Designation").ToList();
+
             return View("DynTxtCreateSecondMethod", CustomControl);
         }
 
@@ -116,7 +108,21 @@ namespace JqueryExamples.Controllers
 
 
 
+//         foreach (var item in CustomControl)
+//            {
+//                var test = CustomControl.Where(s => s.PropertyName == "EmpName" && s.PropertyValue == "John").Select(s => s.PropertyName);
+//                if (test != null)
+//                {
+//                    item.ReadOnlyProp = "readonly";
+//                }
+//                else
+//                {
+//                    item.ReadOnlyProp = string.Empty;
 
+//                }
+
+//CustomControl.Add(item);
+//            }
 
 
 

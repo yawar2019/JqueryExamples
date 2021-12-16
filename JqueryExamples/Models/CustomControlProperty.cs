@@ -14,6 +14,17 @@ namespace JqueryExamples.Models
         public bool IsActive { get; set; }
         public string FieldType { get; set; }
         public string ReadOnlyProp { get; set; }
+    }
 
+    public class Genderdet
+    {
+        public int id { get; set; }
+        public string Gender { get; set; }
+    }
+
+    public class Designationdet
+    {
+        public int id { get; set; }
+        public string Designation { get; set; }
     }
 }
